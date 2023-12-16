@@ -11,7 +11,7 @@
     "config": {
         "sort-packages": true
     },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require-dev": {
         "marcocesarato/php-conventional-changelog": "^1.17",
         "phpunit/phpunit": "^10",
