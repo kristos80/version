@@ -11,6 +11,7 @@ You can, however, alter its behavior by loading several variables in the environ
 
 If the composer file doesn't contain the `version` property, a default value will be used: '1.0.0', which can be altered by passing the parameter `default` when calling the static method `get`.
 
+## Example usage
 ```php
 <?php
 declare(strict_types=1);
