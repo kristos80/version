@@ -23,7 +23,12 @@ final class Version {
 	/**
 	 * @var string
 	 */
-	private static string $composerFilePath;
+	private static string $rootPath;
+
+	/**
+	 * @var string|FALSE
+	 */
+	private static string|false $composerFilePath;
 
 	/**
 	 * @var string
@@ -32,12 +37,13 @@ final class Version {
 
 	/**
 	 * @param string $default
+	 * @param bool $ignoreCache
 	 * @return string
 	 */
-	public static function get(string $default = self::DEFAULT_VERSION): string {
-		self::boot();
+	public static function get(string $default = self::DEFAULT_VERSION, bool $ignoreCache = FALSE): string {
+		self::boot($ignoreCache);
 
-		if(self::$version ?? FALSE) {
+		if(!$ignoreCache && (self::$version ?? FALSE)) {
 			return self::$version;
 		}
 
@@ -48,19 +54,35 @@ final class Version {
 	}
 
 	/**
+	 * @param bool $ignoreCache
 	 * @return void
 	 */
-	private static function boot(): void {
-		if(self::$boot) {
+	private static function boot(bool $ignoreCache): void {
+		if(!$ignoreCache && self::$boot) {
 			return;
 		}
 
 		self::$boot = TRUE;
 
-		if(($_ENV["VERSION_COMPOSER_FILE_PATH"] ?? FALSE) && file_exists($_ENV["VERSION_COMPOSER_FILE_PATH"])) {
-			self::$composerFilePath = $_ENV["VERSION_COMPOSER_FILE_PATH"];
+		$rootPath = self::getRootPath();
+		if(($_ENV["VERSION_COMPOSER_FILE_PATH"] ?? FALSE)) {
+			$composerFilePath = $_ENV["VERSION_COMPOSER_FILE_PATH"];
+			if($_ENV["VERSION_COMPOSER_FILE_PATH_RELATIVE"] ?? FALSE) {
+				self::$composerFilePath = realpath("$rootPath/$composerFilePath");
+			}
 
 			return;
+		}
+
+		self::$composerFilePath = realpath("$rootPath/composer.json");
+	}
+
+	/**
+	 * @return string
+	 */
+	private static function getRootPath(): string {
+		if(self::$rootPath ?? FALSE) {
+			return self::$rootPath;
 		}
 
 		$vendorPath = NULL;
@@ -75,8 +97,6 @@ final class Version {
 			$recursion++;
 		}
 
-		$composerFilePath = "$vendorPath/../composer.json";
-
-		self::$composerFilePath = $composerFilePath;
+		return self::$rootPath = realpath("$vendorPath/..");
 	}
 }

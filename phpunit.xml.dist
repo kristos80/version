@@ -9,11 +9,6 @@
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
-    <coverage>
-        <report>
-            <html outputDirectory="build/coverage" lowUpperBound="0" highLowerBound="100"/>
-        </report>
-    </coverage>
     <source>
         <include>
             <directory suffix=".php">./src</directory>
