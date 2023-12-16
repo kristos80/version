@@ -4,6 +4,15 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [1.0.2](https://github.com/kristos80/version/compare/v1.0.1...v1.0.2) (2023-12-16)
+
+### Features
+
+* Initial release ([1452e9](https://github.com/kristos80/version/commit/1452e9c47702eca29f50eb167256f876e957227d))
+
+
+---
+
 ## [1.0.1](https://github.com/kristos80/version/compare/v1.0.0...v1.0.1) (2023-12-16)
 
 

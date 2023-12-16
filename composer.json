@@ -1,28 +1,28 @@
 {
-  "name": "kristos80/version",
-  "require": {
-    "php": ">=8.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Kristos80\\Version\\": "src"
+    "name": "kristos80/version",
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kristos80\\Version\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.2",
+    "require-dev": {
+        "marcocesarato/php-conventional-changelog": "^1.17",
+        "phpunit/phpunit": "^10",
+        "vlucas/phpdotenv": "^5"
+    },
+    "scripts": {
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit",
+        "test": "vendor/bin/phpunit tests"
     }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "version": "1.0.1",
-  "require-dev": {
-    "marcocesarato/php-conventional-changelog": "^1.17",
-    "phpunit/phpunit": "^10",
-    "vlucas/phpdotenv": "^5"
-  },
-  "scripts": {
-    "changelog": "conventional-changelog",
-    "release": "conventional-changelog --commit",
-    "release:patch": "conventional-changelog --patch --commit",
-    "release:minor": "conventional-changelog --minor --commit",
-    "release:major": "conventional-changelog --major --commit",
-    "test": "vendor/bin/phpunit tests"
-  }
 }
