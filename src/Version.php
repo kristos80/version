@@ -69,6 +69,8 @@ final class Version {
 			$composerFilePath = $_ENV["VERSION_COMPOSER_FILE_PATH"];
 			if($_ENV["VERSION_COMPOSER_FILE_PATH_RELATIVE"] ?? FALSE) {
 				self::$composerFilePath = realpath("$rootPath/$composerFilePath");
+			} else {
+				self::$composerFilePath = realpath($composerFilePath);
 			}
 
 			return;
@@ -88,7 +90,7 @@ final class Version {
 		$vendorPath = NULL;
 		$recursion = 0;
 		$parentDir = __DIR__;
-		while(!$vendorPath && $recursion < ($_ENV["VERSION_MAX_PARENT_PATH_RECURSION"] ?? self::MAX_PARENT_PATH_RECURSION)) {
+		while(!$vendorPath && $recursion < self::MAX_PARENT_PATH_RECURSION) {
 			$parentDir = dirname($parentDir);
 			if(file_exists("$parentDir/vendor/autoload.php")) {
 				$vendorPath = realpath("$parentDir/vendor");
