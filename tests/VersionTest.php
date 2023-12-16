@@ -12,6 +12,9 @@ final class VersionTest extends TestCase {
 	 */
 	protected static bool $envLoaded = FALSE;
 
+	/**
+	 * @return void
+	 */
 	public function testCurrentVersion(): void {
 		$composerFilePath = __DIR__ . "/../composer.json";
 		$composerContent = json_decode(file_get_contents($composerFilePath), TRUE);
