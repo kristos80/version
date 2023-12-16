@@ -1,0 +1,27 @@
+{
+    "name": "kristos80/version",
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kristos80\\Version\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.0",
+    "require-dev": {
+        "marcocesarato/php-conventional-changelog": "^1.17",
+        "phpunit/phpunit": "^10",
+        "vlucas/phpdotenv": "^5"
+    },
+    "scripts": {
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit"
+    }
+}
