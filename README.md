@@ -2,6 +2,16 @@
 
 Version is a small utility that attempts to find the version of a web app by scanning its `composer.json` file.
 
+---
+
+### WIP -- Do not use in production yet as: ###
+
+* It's not tested extensively
+* It's used mainly to internal projects and might have breaking changes without prior notice
+* There are probably a lot of missing features
+
+---
+
 It assumes that the `vendor` folder is located at the root of the app and that no other `vendor` folder exists within the entire app. It cannot guarantee that things will work if that's the case: That two or more `vendor` folders exist.
 
 You can, however, alter its behavior by loading several variables in the environment:
