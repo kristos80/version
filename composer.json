@@ -1,6 +1,6 @@
 {
   "name": "kristos80/version",
-  "description": "Version is a small utility that attempts to find the version of a web app by scanning its composer.json file.",
+  "description": "Version is a static helper that attempts to find the version of a web app by scanning its composer.json file",
   "license": "MIT",
   "require": {
     "php": ">=8.0"
