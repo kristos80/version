@@ -1,6 +1,6 @@
 # 🚀 Version
 
-Version is a small utility that attempts to find the version of a web app by scanning its `composer.json` file.
+Version is a static helper that attempts to find the version of a web app by scanning its `composer.json` file.
 
 ---
 
