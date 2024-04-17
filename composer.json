@@ -1,30 +1,30 @@
 {
-  "name": "kristos80/version",
-  "description": "Version is a static helper that attempts to find the version of a web app by scanning its composer.json file",
-  "license": "MIT",
-  "require": {
-    "php": ">=8.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Kristos80\\Version\\": "src"
+    "name": "kristos80/version",
+    "description": "Version is a static helper that attempts to find the version of a web app by scanning its composer.json file",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kristos80\\Version\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "version": "2.0.0",
+    "require-dev": {
+        "marcocesarato/php-conventional-changelog": "^1.17",
+        "phpunit/phpunit": "^10",
+        "vlucas/phpdotenv": "^5"
+    },
+    "scripts": {
+        "changelog": "conventional-changelog",
+        "release": "conventional-changelog --commit",
+        "release:patch": "conventional-changelog --patch --commit",
+        "release:minor": "conventional-changelog --minor --commit",
+        "release:major": "conventional-changelog --major --commit",
+        "test": "vendor/bin/phpunit tests"
     }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "version": "1.0.4",
-  "require-dev": {
-    "marcocesarato/php-conventional-changelog": "^1.17",
-    "phpunit/phpunit": "^10",
-    "vlucas/phpdotenv": "^5"
-  },
-  "scripts": {
-    "changelog": "conventional-changelog",
-    "release": "conventional-changelog --commit",
-    "release:patch": "conventional-changelog --patch --commit",
-    "release:minor": "conventional-changelog --minor --commit",
-    "release:major": "conventional-changelog --major --commit",
-    "test": "vendor/bin/phpunit tests"
-  }
 }

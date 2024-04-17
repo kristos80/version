@@ -4,6 +4,15 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [2.0.0](https://github.com/kristos80/version/compare/v1.0.4...v2.0.0) (2024-04-17)
+
+### Features
+
+* No statics ([aec0f0](https://github.com/kristos80/version/commit/aec0f0c0b6520b172e94c4cb2cda859457ac9453))
+
+
+---
+
 ## [1.0.4](https://github.com/kristos80/version/compare/v1.0.3...v1.0.4) (2023-12-16)
 
 
