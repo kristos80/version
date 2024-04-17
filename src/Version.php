@@ -16,75 +16,76 @@ final class Version {
 	private const MAX_PARENT_PATH_RECURSION = 50;
 
 	/**
-	 * @var bool
-	 */
-	private static bool $boot = FALSE;
-
-	/**
 	 * @var string
 	 */
-	private static string $rootPath;
+	private string $rootPath;
 
 	/**
 	 * @var string|FALSE
 	 */
-	private static string|false $composerFilePath;
+	private string|false $composerFilePath;
 
 	/**
 	 * @var string
 	 */
-	private static string $version;
+	private string $version;
+
+	/**
+	 * @var bool
+	 */
+	private bool $boot = FALSE;
 
 	/**
 	 * @param string $default
 	 * @param bool $ignoreCache
+	 *
 	 * @return string
 	 */
-	public static function get(string $default = self::DEFAULT_VERSION, bool $ignoreCache = FALSE): string {
-		self::boot($ignoreCache);
+	public function get(string $default = self::DEFAULT_VERSION, bool $ignoreCache = FALSE): string {
+		$this->boot($ignoreCache);
 
-		if(!$ignoreCache && (self::$version ?? FALSE)) {
-			return self::$version;
+		if(!$ignoreCache && ($this->version ?? FALSE)) {
+			return $this->version;
 		}
 
 		$composerContent = [];
-		self::$composerFilePath && ($composerContent = json_decode(file_get_contents(self::$composerFilePath), TRUE));
+		$this->composerFilePath && ($composerContent = json_decode(file_get_contents($this->composerFilePath), TRUE));
 
-		return self::$version = $composerContent["version"] ?? $default;
+		return $this->version = $composerContent["version"] ?? $default;
 	}
 
 	/**
 	 * @param bool $ignoreCache
+	 *
 	 * @return void
 	 */
-	private static function boot(bool $ignoreCache): void {
-		if(!$ignoreCache && self::$boot) {
+	private function boot(bool $ignoreCache): void {
+		if(!$ignoreCache && $this->boot) {
 			return;
 		}
 
-		self::$boot = TRUE;
+		$this->boot = TRUE;
 
-		$rootPath = self::getRootPath();
+		$rootPath = $this->getRootPath();
 		if(($_ENV["VERSION_COMPOSER_FILE_PATH"] ?? FALSE)) {
 			$composerFilePath = $_ENV["VERSION_COMPOSER_FILE_PATH"];
-			if($_ENV["VERSION_COMPOSER_FILE_PATH_RELATIVE"] ?? FALSE) {
-				self::$composerFilePath = realpath("$rootPath/$composerFilePath");
-			} else {
-				self::$composerFilePath = realpath($composerFilePath);
+			$this->composerFilePath = realpath("$rootPath/$composerFilePath");
+			if(!($_ENV["VERSION_COMPOSER_FILE_PATH_RELATIVE"] ?? FALSE)) {
+				$this->composerFilePath = realpath($composerFilePath);
 			}
 
 			return;
 		}
 
-		self::$composerFilePath = realpath("$rootPath/composer.json");
+		$this->composerFilePath = realpath("$rootPath/composer.json");
 	}
 
 	/**
 	 * @return string
 	 */
-	private static function getRootPath(): string {
-		if(self::$rootPath ?? FALSE) {
-			return self::$rootPath;
+	private function getRootPath(): string {
+		if($this->rootPath ?? FALSE) {
+			return $this->rootPath;
 		}
 
 		$vendorPath = NULL;
@@ -99,6 +100,6 @@ final class Version {
 			$recursion++;
 		}
 
-		return self::$rootPath = realpath("$vendorPath/..");
+		return $this->rootPath = realpath("$vendorPath/..");
 	}
 }
