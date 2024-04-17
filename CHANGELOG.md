@@ -4,6 +4,11 @@
 All notable changes to this project will be documented in this file.
 <!--- END HEADER -->
 
+## [3.0.0](https://github.com/kristos80/version/compare/v2.0.0...v3.0.0) (2024-04-17)
+
+
+---
+
 ## [2.0.0](https://github.com/kristos80/version/compare/v1.0.4...v2.0.0) (2024-04-17)
 
 ### Features

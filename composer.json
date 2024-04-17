@@ -3,7 +3,7 @@
     "description": "Version is a static helper that attempts to find the version of a web app by scanning its composer.json file",
     "license": "MIT",
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.2"
     },
     "autoload": {
         "psr-4": {
@@ -13,7 +13,7 @@
     "config": {
         "sort-packages": true
     },
-    "version": "2.0.0",
+    "version": "3.0.0",
     "require-dev": {
         "marcocesarato/php-conventional-changelog": "^1.17",
         "phpunit/phpunit": "^10",
