@@ -39,6 +39,34 @@ final class Version {
 	 * @param string $default
 	 * @param bool $ignoreCache
 	 *
+	 * @return SemanticVersion
+	 * @throws InvalidSemanticVersionException
+	 */
+	public function getAsSemanticVersion(string $default = self::DEFAULT_VERSION, bool $ignoreCache = FALSE): SemanticVersion {
+		$version = $this->get($default, $ignoreCache);
+		$versionParts = explode(".", $version);
+
+		count($versionParts) > 3 && (throw new InvalidSemanticVersionException("Too many semantic parts in '$version'"));
+
+		$major = (int) $versionParts[0];
+		(($versionParts[0] !== "0" && $major === 0)) &&
+		(throw new InvalidSemanticVersionException("Invalid major part '$versionParts[0]'"));
+
+		$minor = (int) ($versionParts[1] ?? 0);
+		(($versionParts[1] !== "0" && $minor === 0)) &&
+		(throw new InvalidSemanticVersionException("Invalid minor part '$versionParts[1]'"));
+
+		$patch = (int) ($versionParts[2] ?? 0);
+		(($versionParts[2] !== "0" && $patch === 0)) &&
+		(throw new InvalidSemanticVersionException("Invalid patch part '$versionParts[2]'"));
+
+		return new SemanticVersion(major: $major, minor: $minor, patch: $patch);
+	}
+
+	/**
+	 * @param string $default
+	 * @param bool $ignoreCache
+	 *
 	 * @return string
 	 */
 	public function get(string $default = self::DEFAULT_VERSION, bool $ignoreCache = FALSE): string {

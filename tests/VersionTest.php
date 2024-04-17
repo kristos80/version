@@ -4,6 +4,7 @@ declare(strict_types=1);
 use Dotenv\Dotenv;
 use Kristos80\Version\Version;
 use PHPUnit\Framework\TestCase;
+use Kristos80\Version\InvalidSemanticVersionException;
 
 final class VersionTest extends TestCase {
 
@@ -19,6 +20,7 @@ final class VersionTest extends TestCase {
 
 	/**
 	 * @return void
+	 * @throws InvalidSemanticVersionException
 	 */
 	public function testCurrentVersion(): void {
 		$composerFilePath = __DIR__ . "/../composer.json";
@@ -28,22 +30,24 @@ final class VersionTest extends TestCase {
 
 		self::loadEnv();
 
-		$this->assertEquals("1.0.1", $this->version->get("1", TRUE));
+		$this->assertEquals("1.0.1", $this->version->get("151", TRUE));
 
 		$_ENV["VERSION_COMPOSER_FILE_PATH"] = "dummy";
 
 		$this->assertEquals("10", $this->version->get("10", TRUE));
+
+		self::loadEnv();
+		$semanticVersion = $this->version->getAsSemanticVersion("2", TRUE);
+		$this->assertEquals(1, $semanticVersion->getMajor());
+		$this->assertEquals(0, $semanticVersion->getMinor());
+		$this->assertEquals(1, $semanticVersion->getPatch());
 	}
 
 	/**
 	 * @return void
 	 */
 	protected function loadEnv(): void {
-		if(self::$envLoaded) {
-			return;
-		}
-
-		$dotEnv = Dotenv::createImmutable(__DIR__, ".env.test");
+		$dotEnv = Dotenv::createMutable(__DIR__, ".env.test");
 		$dotEnv->load();
 	}
 
