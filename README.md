@@ -4,6 +4,10 @@ Version is a static helper that attempts to find the version of a web app by sca
 
 ---
 
+[![Coverage Status](https://coveralls.io/repos/github/kristos80/env-reader/badge.svg?branch=master)](https://coveralls.io/github/kristos80/env-reader?branch=master)
+
+---
+
 ## Work in Progress (WIP) — Do not use in production yet: ##
 
 - It has not undergone extensive testing.
